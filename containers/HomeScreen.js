@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/core";
 import { Button, Text, View } from "react-native";
 
-export default function HomeScreen() {
+export default function HomeScreen({ userId }) {
   const navigation = useNavigation();
   return (
     <View>
@@ -9,7 +9,7 @@ export default function HomeScreen() {
       <Button
         title="Go to Profile"
         onPress={() => {
-          navigation.navigate("Profile", { userId: 123 });
+          navigation.navigate("Profile", { userId: userId });
         }}
       />
     </View>

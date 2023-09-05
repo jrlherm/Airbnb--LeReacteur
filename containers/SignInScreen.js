@@ -1,9 +1,16 @@
-import { useNavigation } from "@react-navigation/core";
-import { Button, Text, TextInput, View, TouchableOpacity } from "react-native";
+import {
+  Button,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  useNavigation,
+} from "react-native";
+
 import { useState } from "react";
 import axios from "axios";
 
-export default function SignInScreen({ setToken }) {
+export default function SignInScreen({ setToken, setUserId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState({
     email: "",
@@ -30,12 +37,16 @@ export default function SignInScreen({ setToken }) {
         formData
       );
       const userToken = response.data.token;
+      const userId = response.data.id;
+
       setToken(userToken);
+      setUserId(userId);
       console.log("====================");
       console.log(response.data);
       console.log(
         `====> ${response.data.username} succesfully logged In. <====`
       );
+      console.log(`====> ${response.data.id} ==> ID. <====`);
       console.log("userToken ==> ", userToken);
     } catch (error) {
       console.log("Error during account login ==> ", error.message);
@@ -63,10 +74,13 @@ export default function SignInScreen({ setToken }) {
             const userToken = "secret-token";
             setToken(userToken);
             handleSubmit();
-            navigation.navigate("SignUp");
           }}
         />
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("SignUp");
+          }}
+        >
           <Text>Create an account</Text>
         </TouchableOpacity>
       </View>
