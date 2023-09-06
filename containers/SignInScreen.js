@@ -1,14 +1,8 @@
-import {
-  Button,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  useNavigation,
-} from "react-native";
+import { Button, Text, TextInput, View, TouchableOpacity } from "react-native";
 
 import { useState } from "react";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignInScreen({ setToken, setUserId }) {
   const [isLoading, setIsLoading] = useState(false);

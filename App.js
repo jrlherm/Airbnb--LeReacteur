@@ -58,11 +58,9 @@ export default function App() {
           <>
             <Stack.Screen name="SignIn">
               {() => <SignInScreen setToken={setToken} setUserId={setUserId} />}
-              <Stack.Screen name="SignUp">
-                {() => (
-                  <SignUpScreen setToken={setToken} setUserId={setUserId} />
-                )}
-              </Stack.Screen>
+            </Stack.Screen>
+            <Stack.Screen name="SignUp">
+              {() => <SignUpScreen setToken={setToken} setUserId={setUserId} />}
             </Stack.Screen>
           </>
         ) : (

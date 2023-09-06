@@ -1,8 +1,9 @@
 import { Button, Text, TextInput, View, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
-export default function SignUpScreen({ setToken }) {
+export default function SignUpScreen({ setToken, setUserId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -30,6 +31,8 @@ export default function SignUpScreen({ setToken }) {
       );
       // Handle the response data as needed
       console.log(response.data);
+      setUserId(response.data.id);
+      setToken(response.data.token);
     } catch (error) {
       console.log("Error during account signup ==> ", error.message);
     }
@@ -45,6 +48,20 @@ export default function SignUpScreen({ setToken }) {
           placeholder="Username"
           onChangeText={(value) => handleChange("username", value)}
           value={formData.username}
+        />
+        <Text>Email: </Text>
+        <TextInput
+          placeholder="Email"
+          onChangeText={(value) => handleChange("email", value)}
+          value={formData.email}
+        />
+        <Text>Description: </Text>
+        <TextInput
+          placeholder="Description"
+          multiline={true}
+          numberOfLines={4}
+          onChangeText={(value) => handleChange("description", value)}
+          value={formData.description}
         />
         <Text>Password: </Text>
         <TextInput
